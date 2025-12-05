@@ -1,180 +1,112 @@
-/* ----------------------------------
- * 1. 기본 설정 및 배경
- * ---------------------------------- */
-:root {
-    --color-dark: #0A0A1F; 
-    --color-neon-blue: #00ffff; 
-    --color-neon-pink: #ff00ff; 
-    --color-text: #E0E0FF; 
-    --font-main: 'Rajdhani', sans-serif;
-    --font-title: 'Orbitron', monospace;
-}
-
-* {
-    box-sizing: border-box;
+/* ------------------------------
+   전체 기본 스타일
+------------------------------ */
+body {
     margin: 0;
     padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: radial-gradient(circle at center, #140020, #000000);
+    color: white;
 }
 
-body {
-    background-color: var(--color-dark);
-    background-image: radial-gradient(circle, rgba(10, 10, 31, 1) 0%, rgba(0, 0, 0, 1) 100%), 
-                      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0px, rgba(255, 255, 255, 0.05) 1px, transparent 1px, transparent 5px);
-    color: var(--color-text);
-    font-family: var(--font-main);
-    padding: 30px 20px; /* 전체 페이지 패딩 감소 */
-    min-height: 100vh;
-}
-
-.page-container {
-    max-width: 1000px; /* 최대 너비 약간 감소 */
+/* 컨테이너 */
+.container {
+    width: 1000px;
     margin: 0 auto;
-    text-align: center;
+    padding: 40px 0;
 }
 
+/* 제목 */
 h1 {
-    font-family: var(--font-title);
-    font-size: 3em; /* 헤더 크기 약간 감소 */
-    color: var(--color-neon-blue);
-    letter-spacing: 0.2em;
-    margin-bottom: 50px; /* 마진 감소 */
-    text-shadow: 0 0 8px var(--color-neon-blue), 0 0 20px var(--color-neon-pink);
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 20px;
+    color: #ff3cff;
+    text-shadow: 0 0 10px #ff3cff, 0 0 25px #ff00ee;
 }
 
-/* ----------------------------------
- * 2. 곡별 컨테이너 (Song Card)
- * ---------------------------------- */
-.song-card {
-    display: flex; 
-    align-items: flex-start;
-    gap: 30px; /* 이미지와 텍스트 사이 간격 감소 */
-    margin-bottom: 30px; /* 카드 간 마진 감소 */
-    padding: 25px; /* 카드 내부 패딩 감소 */
-    border-radius: 10px;
-    background: rgba(10, 10, 31, 0.7);
-    border: 1px solid rgba(0, 255, 255, 0.3);
-    backdrop-filter: blur(8px); 
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); 
-    transition: all 0.3s ease;
+/* 소개글 */
+.intro-text {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #e4caff;
 }
 
-.song-card:hover {
-    box-shadow: 0 0 25px var(--color-neon-blue), 0 0 40px var(--color-neon-pink);
-    transform: translateY(-5px);
+
+/* ------------------------------
+   곡 카드 (행 형태)
+------------------------------ */
+.track-card {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    padding: 25px;
+    margin-bottom: 40px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 0, 255, 0.2);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.1);
 }
 
-/* ----------------------------------
- * 3. 이미지 및 링크 영역 (image-link-wrapper)
- * ---------------------------------- */
-.image-link-wrapper {
-    width: 150px; /* **핵심 변경:** 이미지 영역 너비 150px로 축소 */
-    flex-shrink: 0; 
+/* 왼쪽 (사진 + 버튼) */
+.left {
+    width: 40%;
     text-align: center;
 }
 
-.album-art {
+/* 앨범 커버 */
+.cover img {
     width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 5px;
-    filter: sepia(0.3) contrast(1.1) brightness(0.9);
-    box-shadow: 0 0 8px var(--color-neon-blue);
+    border-radius: 14px;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
 }
 
-.neon-link {
+/* 재생 버튼 */
+.play-btn {
     display: block;
-    margin-top: 10px; /* 마진 감소 */
-    color: var(--color-neon-pink);
+    margin-top: 15px;
+    padding: 12px 20px;
     text-decoration: none;
-    font-family: var(--font-title);
-    font-size: 0.85em; /* 폰트 크기 약간 감소 */
-    padding: 6px 3px; /* 패딩 감소 */
-    border: 1px solid var(--color-neon-pink);
-    background: rgba(255, 0, 255, 0.1);
-    box-shadow: 0 0 5px var(--color-neon-pink);
-    transition: all 0.2s ease;
-    word-break: break-word; /* 긴 텍스트 줄바꿈 */
+    color: white;
+    background: #ff3cff;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: center;
+    transition: 0.2s;
+    box-shadow: 0 0 10px #ff3cff;
 }
 
-.neon-link:hover {
-    color: var(--color-dark);
-    background: var(--color-neon-pink);
-    box-shadow: 0 0 15px var(--color-neon-pink), 0 0 30px var(--color-neon-blue);
+.play-btn:hover {
+    background: #ff00dd;
+    box-shadow: 0 0 15px #ff00dd;
 }
 
-/* ----------------------------------
- * 4. 텍스트 섹션
- * ---------------------------------- */
-.text-section {
-    flex-grow: 1; 
-    text-align: left;
+
+/* ------------------------------
+   오른쪽 (텍스트)
+------------------------------ */
+.right {
+    width: 55%;
+    padding-left: 20px;
 }
 
-.text-section h2 {
-    font-family: var(--font-title);
-    font-size: 1.6em; /* 텍스트 제목 크기 감소 */
-    color: var(--color-neon-blue);
-    margin-bottom: 8px; /* 마진 감소 */
-    text-shadow: 0 0 3px var(--color-neon-blue);
-    letter-spacing: 0.05em;
+.right h2 {
+    font-size: 32px;
+    color: #ffb2ff;
+    text-shadow: 0 0 10px #ff40ff;
+    margin-bottom: 5px;
 }
 
-.description {
-    font-size: 0.95em; /* 설명 텍스트 크기 미세 감소 */
-    line-height: 1.5; /* 줄 간격 감소 */
-    color: var(--color-text);
+.artist {
+    font-size: 18px;
+    opacity: 0.9;
+    margin-bottom: 20px;
 }
 
-/* ----------------------------------
- * 5. 푸터
- * ---------------------------------- */
-.footer-text {
-    margin-top: 40px; /* 푸터 마진 감소 */
-    font-family: monospace;
-    color: rgba(255, 255, 255, 0.5);
-    letter-spacing: 0.1em;
-}
-
-/* ----------------------------------
- * 6. 반응형 디자인 (큰 화면부터 작은 화면까지 최적화)
- * ---------------------------------- */
-
-@media (max-width: 992px) {
-    .song-card {
-        flex-direction: column; 
-        align-items: center; 
-        gap: 20px;
-        padding: 20px;
-    }
-    .image-link-wrapper {
-        width: 50%; /* 중간 화면에서 이미지 너비 조정 */
-        min-width: 150px; /* 최소 너비 보장 */
-    }
-    .text-section {
-        text-align: center;
-        width: 100%;
-    }
-    .text-section h2 {
-        font-size: 1.4em;
-    }
-    .description {
-        font-size: 0.9em;
-    }
-}
-
-@media (max-width: 600px) {
-    h1 {
-        font-size: 1.8em; /* 작은 화면 헤더 크기 더 감소 */
-        margin-bottom: 30px;
-    }
-    .image-link-wrapper {
-        width: 70%; /* 작은 화면에서 이미지 너비 조정 */
-    }
-    .song-card {
-        padding: 15px;
-    }
-    .neon-link {
-        font-size: 0.75em; /* 링크 텍스트 더 작게 */
-        padding: 5px 2px;
-    }
+.comment {
+    font-size: 17px;
+    line-height: 1.7;
+    opacity: 0.95;
 }
